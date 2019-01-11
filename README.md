@@ -16,4 +16,4 @@ Provision and deploy Fuse integration packaged as Spring Boot applications.
 
 Alternatively, an `app_artifact_url` can be specified to download the Spring Boot jar from an HTTP endpoint.
 
-Note that Jenkins can select to only execute specific phases of the deployment playbook with tags. e.g. `-t health-check`.
+Note that Jenkins can select to only execute specific phases of the deployment playbook with tags. e.g. `-t validate`.
