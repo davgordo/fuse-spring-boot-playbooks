@@ -1,0 +1,7 @@
+---
+
+- name: enable fuse service
+  systemd:
+    name: "{{ app_name }}.service"
+    state: started
+  become: yes

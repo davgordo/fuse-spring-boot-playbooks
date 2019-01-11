@@ -1,0 +1,10 @@
+---
+
+app_name: hello
+app_max_heap: 2G
+fuse_group: fuse
+fuse_user: fuse
+org_base_directory: /opt/org
+fuse_apps_base_directory: "{{ org_base_directory }}/apps"
+fuse_config_directory: config
+app_directory: "{{ fuse_apps_base_directory }}/{{ app_name }}"

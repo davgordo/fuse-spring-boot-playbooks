@@ -1,0 +1,14 @@
+---
+
+- name: health check application
+  local_action:
+    module: uri
+    url: "http://{{ inventory_hostname }}:{{ app_health_port }}/health"
+    status_code: '200'
+  register: healthresult
+  until: (healthresult.status == 200)
+  retries: 10
+  delay: 10
+
+- debug:
+    msg: "{{ healthresult.status}}"

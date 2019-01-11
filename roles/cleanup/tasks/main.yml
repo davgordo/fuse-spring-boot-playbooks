@@ -1,0 +1,9 @@
+---
+
+- name: cleanup old deployments
+  shell: cd {{ app_directory }} && (ls -t |head -n 25;ls)|sort|uniq -u|xargs rm -rfv
+  register: output
+
+- name: list removed files
+  debug:
+    var: output.stdout_lines

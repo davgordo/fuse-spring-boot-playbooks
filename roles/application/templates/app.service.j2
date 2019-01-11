@@ -1,0 +1,12 @@
+[Unit]
+Description={{ app_name }}
+After=syslog.target
+
+[Service]
+User={{ fuse_user }}
+WorkingDirectory={{ app_directory }}/latest
+ExecStart=/bin/java -jar -Xmx{{ app_max_heap }} app.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target

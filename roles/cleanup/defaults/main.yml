@@ -1,0 +1,6 @@
+---
+
+app_name: hello
+org_base_directory: /opt/org
+fuse_apps_base_directory: "{{ org_base_directory }}/apps"
+app_directory: "{{ fuse_apps_base_directory }}/{{ app_name }}"

@@ -1,0 +1,40 @@
+---
+
+- name: create a directory for target application
+  file:
+    owner: "{{ fuse_user }}"
+    group: "{{ fuse_group }}"
+    path: "{{ app_deployment_directory }}"
+    state: directory
+
+- name: copy application jar file to target application folder
+  get_url:
+    owner: "{{ fuse_deployment_user }}"
+    group: "{{ fuse_group }}"
+    url: "{{ app_artifact_url }}"
+    dest: "{{ app_deployment_directory }}/app.jar"
+    remote_dest: yes
+    mode: 0644
+  when: app_artifact_url is defined
+
+- name: copy application jar file to target application folder
+  copy:
+    owner: "{{ fuse_deployment_user }}"
+    group: "{{ fuse_group }}"
+    src: "{{ app_artifact_path }}"
+    dest: "{{ app_deployment_directory }}/app.jar"
+    mode: 0644
+  when: app_artifact_path is defined
+
+- name: stop target application service
+  service:
+    name: "{{ app_name }}.service"
+    state: stopped
+  become: yes
+
+- name: create symlink to the latest target application folder
+  file:
+    src: "{{ app_deployment_directory }}"
+    dest: "{{ app_directory }}/latest"
+    state: link
+  notify: enable fuse service

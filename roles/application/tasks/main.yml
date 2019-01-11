@@ -1,0 +1,37 @@
+---
+
+- name: detect symlink
+  stat:
+    path: "{{ app_directory }}/latest"
+  register: latest
+
+- name: create application deployment directory
+  file:
+    owner: "{{ fuse_user }}"
+    group: "{{ fuse_group }}"
+    path: "{{ app_directory }}/init"
+    state: directory
+    mode: 0775
+  become: yes
+  when: latest.stat.exists == False
+
+- name: symlink to latest
+  file:
+    owner: "{{ fuse_user }}"
+    group: "{{ fuse_group }}"
+    src: "{{ app_directory }}/init"
+    dest: "{{ app_directory }}/latest"
+    state: link
+  become: yes
+  when: latest.stat.exists == False
+
+- name: create application unit file
+  template:
+    src: app.service.j2
+    dest: "/usr/lib/systemd/system/{{ app_name }}.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - enable fuse service
+  become: yes
