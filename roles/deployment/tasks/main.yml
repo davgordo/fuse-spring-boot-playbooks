@@ -9,7 +9,7 @@
 
 - name: copy application jar file to target application folder
   get_url:
-    owner: "{{ fuse_deployment_user }}"
+    owner: "{{ fuse_user }}"
     group: "{{ fuse_group }}"
     url: "{{ app_artifact_url }}"
     dest: "{{ app_deployment_directory }}/app.jar"
@@ -19,7 +19,7 @@
 
 - name: copy application jar file to target application folder
   copy:
-    owner: "{{ fuse_deployment_user }}"
+    owner: "{{ fuse_user }}"
     group: "{{ fuse_group }}"
     src: "{{ app_artifact_path }}"
     dest: "{{ app_deployment_directory }}/app.jar"
