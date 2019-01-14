@@ -13,7 +13,6 @@
     group: "{{ fuse_group }}"
     url: "{{ app_artifact_url }}"
     dest: "{{ app_deployment_directory }}/app.jar"
-    remote_dest: yes
     mode: 0644
   when: app_artifact_url is defined
 
