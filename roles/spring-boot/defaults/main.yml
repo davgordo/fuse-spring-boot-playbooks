@@ -14,3 +14,5 @@ fuse_apps_base_directory: "{{ org_base_directory }}/apps"
 app_directory: "{{ fuse_apps_base_directory }}/{{ app_name }}"
 app_deployment_directory: "{{ app_directory }}/{{ app_version }}"
 #fuse_config_directory: config
+
+phase: all
