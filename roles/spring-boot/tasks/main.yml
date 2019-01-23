@@ -1,0 +1,11 @@
+---
+
+- include_tasks: environment.yml
+
+- include_tasks: application.yml
+
+- include_tasks: deployment.yml
+
+- include_tasks: health-check.yml
+
+- include_tasks: cleanup.yml

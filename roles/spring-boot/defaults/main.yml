@@ -1,12 +1,16 @@
 ---
-
 app_name: hello
+app_max_heap: 2G
+app_health_port: 8100
 app_version: 1.0.0
-app_artifact_path: hello-1.0.0.jar
+app_artifact_path: files/hello-1.0.0.jar
 #app_artifact_url: http://nexus.example.org:8081/nexus/content/repositories/releases/org/example/hello/1.0.0/hello-1.0.0.jar
+
+java_package: java-1.8.0-openjdk-devel
 fuse_group: fuse
 fuse_user: fuse
-org_base_directory: /opt/org
+org_base_directory: /opt/rhcop
 fuse_apps_base_directory: "{{ org_base_directory }}/apps"
 app_directory: "{{ fuse_apps_base_directory }}/{{ app_name }}"
 app_deployment_directory: "{{ app_directory }}/{{ app_version }}"
+#fuse_config_directory: config

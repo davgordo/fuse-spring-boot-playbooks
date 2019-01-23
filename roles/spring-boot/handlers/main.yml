@@ -4,6 +4,6 @@
   systemd:
     name: "{{ app_name }}.service"
     enabled: yes
-    state: restarted
+    state: started
     daemon_reload: yes
   become: yes

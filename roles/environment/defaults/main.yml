@@ -1,8 +1,0 @@
----
-
-fuse_group: fuse
-fuse_user: fuse
-java_package: java-1.8.0-openjdk-devel
-org_base_directory: /opt/org
-fuse_apps_base_directory: "{{ org_base_directory }}/apps"
-amq_broker_base_directory: "{{ org_base_directory }}/brokers"
