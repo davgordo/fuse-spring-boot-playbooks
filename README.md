@@ -13,4 +13,4 @@ Alternatively, an `app_artifact_url` can be specified to download the Spring Boo
 - `vagrant up`
 
 If you're looking for a sample service that works with this playbook, checkout
-this simple (RESTlet example)[https://github.com/davgordo/fuse-restlet-spring-boot]
+this simple [RESTlet example](https://github.com/davgordo/fuse-restlet-spring-boot)
