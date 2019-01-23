@@ -4,8 +4,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 cluster = {
-  "fuse-01.local" => { :group => "fuse", :ip => "100.0.44.101", :mem => 1024 },
-  "fuse-02.local" => { :group => "fuse", :ip => "100.0.44.102", :mem => 1024 }
+  "fuse01" => { :group => "fuse", :ip => "100.0.44.101", :mem => 1024 },
+  "fuse02" => { :group => "fuse", :ip => "100.0.44.102", :mem => 1024 }
 }
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
