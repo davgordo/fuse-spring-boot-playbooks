@@ -1,0 +1,4 @@
+---
+
+- src: redhat-cop.jboss-common
+  name: redhat-cop.jboss_common

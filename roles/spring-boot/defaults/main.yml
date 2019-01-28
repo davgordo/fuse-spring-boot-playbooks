@@ -1,7 +1,9 @@
 ---
 app_name: hello
 app_max_heap: 2G
+app_service_port: 8000
 app_health_port: 8100
+app_health_path: /health
 app_version: 1.0.0
 app_artifact_path: files/hello-1.0.0.jar
 #app_artifact_url: http://nexus.example.org:8081/nexus/content/repositories/releases/org/example/hello/1.0.0/hello-1.0.0.jar

@@ -1,22 +1,18 @@
 ---
 
-- name: install java
-  yum:
-    name: "{{ java_package }}"
-    state: latest
-  become: yes
-
 - name: fuse user group
   group:
     name: "{{ fuse_group }}"
     state: present
   become: yes
+  tags: environment
 
 - name: fuse user
   user:
     name: "{{ fuse_user }}"
     group: "{{ fuse_group }}"
   become: yes
+  tags: environment
 
 - name: create org directory
   file:
@@ -26,6 +22,7 @@
     state: directory
     mode: 0755
   become: yes
+  tags: environment
 
 - name: create apps directory
   file:
@@ -35,3 +32,4 @@
     state: directory
     mode: 0775
   become: yes
+  tags: environment

@@ -7,6 +7,7 @@
     path: "{{ app_deployment_directory }}"
     state: directory
   become: yes
+  tags: deployment
 
 - name: copy application jar from url
   get_url:
@@ -17,6 +18,7 @@
     mode: 0644
   become: yes
   when: app_artifact_url is defined
+  tags: deployment
 
 - name: copy application jar from local file
   copy:
@@ -27,12 +29,14 @@
     mode: 0644
   become: yes
   when: app_artifact_url is not defined and app_artifact_path is defined
+  tags: deployment
 
 - name: stop target application service
   service:
     name: "{{ app_name }}.service"
     state: stopped
   become: yes
+  tags: deployment
 
 - name: create symlink to the latest target application folder
   file:
@@ -40,6 +44,7 @@
     dest: "{{ app_directory }}/latest"
     state: link
   become: yes
+  tags: deployment
 
 - name: start fuse service
   systemd:
@@ -48,3 +53,4 @@
     state: started
     daemon_reload: yes
   become: yes
+  tags: deployment
