@@ -7,3 +7,8 @@
     state: started
     daemon_reload: yes
   become: yes
+
+- name: restart firewalld
+  service:
+    name: firewalld
+    state: restarted

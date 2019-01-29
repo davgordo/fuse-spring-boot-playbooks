@@ -1,9 +1,13 @@
 ---
 
+- name: configure local firewall
+  include_tasks: firewall.yml
+
 - name: detect symlink
   stat:
     path: "{{ app_directory }}/latest"
   register: latest
+  tags: provisioning
 
 - name: create application deployment directory
   file:
@@ -14,6 +18,7 @@
     mode: 0775
   become: yes
   when: latest.stat.exists == False
+  tags: provisioning
 
 - name: symlink to latest
   file:
@@ -24,6 +29,7 @@
     state: link
   become: yes
   when: latest.stat.exists == False
+  tags: provisioning
 
 - name: create application unit file
   template:
@@ -35,3 +41,4 @@
   notify:
     - enable fuse service
   become: yes
+  tags: provisioning

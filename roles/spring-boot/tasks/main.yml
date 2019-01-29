@@ -1,16 +1,16 @@
 ---
 
 - include_tasks: environment.yml
-  when: (phase == "all") or (phase == "environment")
+  tags: environment
 
 - include_tasks: provisioning.yml
-  when: (phase == "all") or (phase == "provisioning")
+  tags: provisioning
 
 - include_tasks: deployment.yml
-  when: (phase == "all") or (phase == "deployment")
+  tags: deployment
 
 - include_tasks: health-check.yml
-  when: (phase == "all") or (phase == "health-check")
+  tags: health-check
 
 - include_tasks: cleanup.yml
-  when: (phase == "all") or (phase == "cleanup")
+  tags: cleanup

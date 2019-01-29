@@ -1,14 +1,20 @@
 ---
 
+- name: flush handlers
+  meta: flush_handlers
+
 - name: health check application
   local_action:
     module: uri
-    url: "http://{{ ansible_host }}:{{ app_health_port }}/health"
+    url: "http://{{ inventory_hostname }}:{{ app_health_port }}/{{ app_health_path }}"
     status_code: '200'
   register: healthresult
   until: (healthresult.status == 200)
   retries: 10
   delay: 10
+  become: false
+  tags: health-check
 
 - debug:
     msg: "{{ healthresult.status}}"
+  tags: health-check

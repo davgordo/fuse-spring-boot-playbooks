@@ -1,9 +1,15 @@
 ---
 
-- name: cleanup old deployments
-  shell: cd {{ app_directory }} && (ls -t |head -n 25;ls)|sort|uniq -u|xargs rm -rfv
-  register: output
+- name: find old deployments
+  shell: cd {{ app_directory }} && (ls -t |head -n 6;ls)|sort|uniq -u
+  register: files
+  changed_when: false
+  tags: cleanup
 
-- name: list removed files
-  debug:
-    var: output.stdout_lines
+- name: remove old deployments
+  file:
+    path: "{{ app_directory }}/{{ item }}"
+    state: absent
+  with_items: "{{ files.stdout_lines }}"
+  tags: cleanup
+  
